@@ -12,4 +12,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FitDataService.Application\FitDataService.Application.csproj" />
+    <ProjectReference Include="..\FitDataService.Infrastructure\FitDataService.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
