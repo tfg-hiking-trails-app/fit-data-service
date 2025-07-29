@@ -8,11 +8,18 @@
 
   <ItemGroup>
     <PackageReference Include="Garmin.FIT.Sdk" Version="21.171.0" />
+    <PackageReference Include="MongoDB.Driver" Version="3.4.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FitDataService.Application\FitDataService.Application.csproj" />
     <ProjectReference Include="..\FitDataService.Domain\FitDataService.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Configurations\" />
+    <Folder Include="Garmin\Decoder\" />
+    <Folder Include="Garmin\Encoder\" />
   </ItemGroup>
 
 </Project>
