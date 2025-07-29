@@ -1,7 +1,7 @@
 ﻿using FitDataService.Application.Interfaces;
 using FitDataService.Application.Services;
 
-namespace FitDataService.Consumer.Extensions;
+namespace FitDataService.Worker.Extensions;
 
 public static class ServiceCollectionExtension
 {

@@ -1,6 +1,6 @@
 using FitDataService.Application.Interfaces;
 
-namespace FitDataService.Consumer
+namespace FitDataService.Worker
 {
     public class Worker : BackgroundService
     {

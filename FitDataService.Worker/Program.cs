@@ -1,4 +1,4 @@
-using FitDataService.Consumer.Extensions;
+using FitDataService.Worker.Extensions;
 
 var builder = Host.CreateApplicationBuilder(args);
 builder.Services.ServiceCollectionConfiguration();

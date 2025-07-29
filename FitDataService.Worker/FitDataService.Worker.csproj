@@ -4,8 +4,9 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>dotnet-FitDataService.Consumer-87ba3a7d-c117-4ec9-85ff-1dc55d9df134</UserSecretsId>
+    <UserSecretsId>dotnet-FitDataService.Worker-87ba3a7d-c117-4ec9-85ff-1dc55d9df134</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <RootNamespace>FitDataService.Worker</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

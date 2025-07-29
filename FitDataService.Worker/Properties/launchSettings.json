@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "FitDataService.Consumer": {
+    "FitDataService.Worker": {
       "commandName": "Project",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"

@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitDataService.Infrastructu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitDataService.Application", "FitDataService.Application\FitDataService.Application.csproj", "{F5FA40D1-9AF9-44B2-813B-05B86F3ECEDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitDataService.Consumer", "FitDataService.Consumer\FitDataService.Consumer.csproj", "{0E138192-72F0-4F1D-94E3-AA1147C14B67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitDataService.Worker", "FitDataService.Worker\FitDataService.Worker.csproj", "{0E138192-72F0-4F1D-94E3-AA1147C14B67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
