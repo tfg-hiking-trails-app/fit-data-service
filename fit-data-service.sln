@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitDataService.Application"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitDataService.Worker", "FitDataService.Worker\FitDataService.Worker.csproj", "{0E138192-72F0-4F1D-94E3-AA1147C14B67}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Infrastructure", "..\hiking-trail-common\Common.Infrastructure\Common.Infrastructure.csproj", "{B01D50A6-EB1A-4131-9F1F-DF1A42003798}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Application", "..\hiking-trail-common\Common.Application\Common.Application.csproj", "{C1784D4C-C949-44B1-9FB7-BFF3CA671ADD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{0E138192-72F0-4F1D-94E3-AA1147C14B67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E138192-72F0-4F1D-94E3-AA1147C14B67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E138192-72F0-4F1D-94E3-AA1147C14B67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B01D50A6-EB1A-4131-9F1F-DF1A42003798}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B01D50A6-EB1A-4131-9F1F-DF1A42003798}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B01D50A6-EB1A-4131-9F1F-DF1A42003798}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B01D50A6-EB1A-4131-9F1F-DF1A42003798}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1784D4C-C949-44B1-9FB7-BFF3CA671ADD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1784D4C-C949-44B1-9FB7-BFF3CA671ADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1784D4C-C949-44B1-9FB7-BFF3CA671ADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1784D4C-C949-44B1-9FB7-BFF3CA671ADD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

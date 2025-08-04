@@ -20,10 +20,13 @@ namespace FitDataService.Worker
             while (!stoppingToken.IsCancellationRequested)
             {
                 // Pedir el CODE de Hiking trail y con ese code llamar al servicio de decode .fit
-                string hikingTrailCode = await _eventConsumerService.Consume();
+                string hikingTrailFile = await _eventConsumerService.Consume();
                 
-                if (_logger.IsEnabled(LogLevel.Information))
-                    _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+                
+                _logger.LogInformation(hikingTrailFile);
+                
+                //if (_logger.IsEnabled(LogLevel.Information))
+                    //_logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
             }
         }
     }

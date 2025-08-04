@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\hiking-trail-common\Common.Infrastructure\Common.Infrastructure.csproj" />
     <ProjectReference Include="..\FitDataService.Application\FitDataService.Application.csproj" />
     <ProjectReference Include="..\FitDataService.Domain\FitDataService.Domain.csproj" />
   </ItemGroup>

@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using Dynastream.Fit;
 using FitDataService.Domain.Interfaces;
-using Activity = Dynastream.Fit.Activity;
 
 namespace FitDataService.Infrastructure.Garmin;
 
