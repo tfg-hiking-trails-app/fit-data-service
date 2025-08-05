@@ -5,7 +5,7 @@ namespace FitDataService.Domain.Models;
 public class FileId
 {
     [BsonElement("type")]
-    public int Type { get; set; }
+    public int? Type { get; set; }
 
     [BsonElement("manufacturer")]
     [BsonIgnoreIfNull]

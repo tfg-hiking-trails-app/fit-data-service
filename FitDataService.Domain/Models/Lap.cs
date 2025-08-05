@@ -5,7 +5,7 @@ namespace FitDataService.Domain.Models;
 public class Lap
 {
      [BsonElement("timestamp")]
-    public long Timestamp { get; set; }
+    public DateTime Timestamp { get; set; }
 
     [BsonElement("start_time")]
     [BsonIgnoreIfNull]

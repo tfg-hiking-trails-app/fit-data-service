@@ -10,10 +10,19 @@ WORKDIR /app
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["FitDataService.Worker/FitDataService.Worker.csproj", "FitDataService.Worker/"]
-RUN dotnet restore "./FitDataService.Worker/FitDataService.Worker.csproj"
+# Fit Data Service
+COPY ["fit-data-service/FitDataService.Worker/FitDataService.Worker.csproj", "fit-data-service/FitDataService.Worker/"]
+COPY ["fit-data-service/FitDataService.Application/FitDataService.Application.csproj", "fit-data-service/FitDataService.Application/"]
+COPY ["fit-data-service/FitDataService.Domain/FitDataService.Domain.csproj", "fit-data-service/FitDataService.Domain/"]
+COPY ["fit-data-service/FitDataService.Infrastructure/FitDataService.Infrastructure.csproj", "fit-data-service/FitDataService.Infrastructure/"]
+# Common Library
+COPY ["hiking-trail-common/Common.API/Common.API.csproj", "hiking-trail-common/Common.API/"]
+COPY ["hiking-trail-common/Common.Application/Common.Application.csproj", "hiking-trail-common/Common.Application/"]
+COPY ["hiking-trail-common/Common.Domain/Common.Domain.csproj", "hiking-trail-common/Common.Domain/"]
+COPY ["hiking-trail-common/Common.Infrastructure/Common.Infrastructure.csproj", "hiking-trail-common/Common.Infrastructure/"]
+RUN dotnet restore "./fit-data-service/FitDataService.Worker/FitDataService.Worker.csproj"
 COPY . .
-WORKDIR "/src/FitDataService.Worker"
+WORKDIR "/src/fit-data-service/FitDataService.Worker"
 RUN dotnet build "./FitDataService.Worker.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # Esta fase se usa para publicar el proyecto de servicio que se copiará en la fase final.

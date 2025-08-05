@@ -2,5 +2,5 @@
 
 public interface IEventConsumerService
 {
-    Task<string> Consume();
+    Task Consume();
 }

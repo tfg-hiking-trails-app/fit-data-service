@@ -5,16 +5,16 @@ namespace FitDataService.Domain.Models;
 public class Record
 {
     [BsonElement("timestamp")]
-    public long Timestamp { get; set; }
+    public DateTime Timestamp { get; set; }
 
     [BsonElement("position_lat")]
-    public int PositionLat { get; set; }
+    public int? PositionLat { get; set; }
 
     [BsonElement("position_long")]
-    public int PositionLong { get; set; }
+    public int? PositionLong { get; set; }
 
     [BsonElement("altitude")]
-    public double Altitude { get; set; }
+    public double? Altitude { get; set; }
 
     [BsonElement("heart_rate")]
     [BsonIgnoreIfNull]

@@ -3,13 +3,13 @@
 namespace FitDataService.Domain.Models;
 
 public class Session
-{
-     [BsonElement("messageIndex")]
+{ 
+    [BsonElement("messageIndex")]
     [BsonIgnoreIfNull]
     public int? MessageIndex { get; set; }
 
     [BsonElement("timestamp")]
-    public long Timestamp { get; set; }
+    public DateTime Timestamp { get; set; }
 
     [BsonElement("event")]
     [BsonIgnoreIfNull]
@@ -84,6 +84,10 @@ public class Session
     [BsonElement("maxHeartRate")]
     [BsonIgnoreIfNull]
     public int? MaxHeartRate { get; set; }
+    
+    [BsonElement("minHeartRate")]
+    [BsonIgnoreIfNull]
+    public int? MinHeartRate { get; set; }
 
     [BsonElement("avgCadence")]
     [BsonIgnoreIfNull]
@@ -116,6 +120,18 @@ public class Session
     [BsonElement("totalDescent")]
     [BsonIgnoreIfNull]
     public int? TotalDescent { get; set; }
+    
+    [BsonElement("avgAltitude")]
+    [BsonIgnoreIfNull]
+    public float? AvgAltitude { get; set; }
+    
+    [BsonElement("maxAltitude")]
+    [BsonIgnoreIfNull]
+    public float? MaxAltitude { get; set; }
+    
+    [BsonElement("minAltitude")]
+    [BsonIgnoreIfNull]
+    public float? MinAltitude { get; set; }
 
     [BsonElement("totalTrainingEffect")]
     [BsonIgnoreIfNull]

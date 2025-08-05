@@ -6,7 +6,7 @@ public class Activity
 {
     [BsonElement("timestamp")]
     [BsonIgnoreIfNull]
-    public long? Timestamp { get; set; }
+    public DateTime? Timestamp { get; set; }
 
     [BsonElement("totalTimerTime")]
     [BsonIgnoreIfNull]
@@ -30,7 +30,7 @@ public class Activity
 
     [BsonElement("localTimestamp")]
     [BsonIgnoreIfNull]
-    public long? LocalTimestamp { get; set; }
+    public DateTime? LocalTimestamp { get; set; }
 
     [BsonElement("eventGroup")]
     [BsonIgnoreIfNull]
