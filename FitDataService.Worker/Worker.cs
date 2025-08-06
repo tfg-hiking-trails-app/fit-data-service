@@ -1,32 +1,28 @@
+using FitDataService.Application.DTOs.Messaging;
 using FitDataService.Application.Interfaces;
 
 namespace FitDataService.Worker
 {
     public class Worker : BackgroundService
     {
-        private readonly ILogger<Worker> _logger;
         private readonly IEventConsumerService _eventConsumerService;
+        private readonly IEventProducerService _eventProducerService;
 
         public Worker(
-            ILogger<Worker> logger,
-            IEventConsumerService eventConsumerService)
+            IEventConsumerService eventConsumerService,
+            IEventProducerService eventProducerService)
         {
-            _logger = logger;
             _eventConsumerService = eventConsumerService;
+            _eventProducerService = eventProducerService;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                // Pedir el CODE de Hiking trail y con ese code llamar al servicio de decode .fit
-                await _eventConsumerService.Consume();
-                
-                
-                // TODO:
-                // Leer .fit y decodiciar con garmin
-                // Guardar datos en mongo
-                // Enviar a Hiking Trail Service la data resumida para la tablas SQL
+                FitFileDataEntityDto fileData = await _eventConsumerService.Consume();
+
+                await _eventProducerService.Send(fileData);
             }
         }
     }

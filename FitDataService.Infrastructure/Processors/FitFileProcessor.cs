@@ -18,7 +18,7 @@ public class FitFileProcessor : IActivityFileProcessor
         _fitFileDataRepository = fitFileDataRepository;
     }
     
-    public async Task ReadActivityFile(string filePath)
+    public async Task<FitFileData> ReadActivityFile(string filePath)
     {
         using (FileStream fitSource = new FileStream(filePath, FileMode.Open))
         {
@@ -38,6 +38,8 @@ public class FitFileProcessor : IActivityFileProcessor
             FitFileData fitFileData = CreateFitFileData(filePath, fitListener.FitMessages);
 
             await _fitFileDataRepository.CreateAsync(fitFileData);
+            
+            return fitFileData;
         }
     }
 

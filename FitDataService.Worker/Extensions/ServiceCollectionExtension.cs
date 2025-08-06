@@ -5,6 +5,7 @@ using FitDataService.Application.Services;
 using FitDataService.Domain.Interfaces;
 using FitDataService.Domain.Interfaces.Processors;
 using FitDataService.Infrastructure.Data;
+using FitDataService.Infrastructure.Data.Configurations.Mapping;
 using FitDataService.Infrastructure.Data.Repositories;
 using FitDataService.Infrastructure.Messaging.Consumer;
 using FitDataService.Infrastructure.Messaging.Producer;
@@ -16,9 +17,14 @@ public static class ServiceCollectionExtension
 {
     public static void ServiceCollectionConfiguration(this IServiceCollection services)
     {
+        services.AddAutoMapper();
+        
         services.AddRabbitMq();
+        
         services.AddHostedServices();
+        
         services.AddServices();
+        
         services.AddRepositories();
     }
 
@@ -37,6 +43,7 @@ public static class ServiceCollectionExtension
         
         // Services
         services.AddScoped<IEventConsumerService, EventConsumerService>();
+        services.AddScoped<IEventProducerService, EventProducerService>();
     }
 
     private static void AddRepositories(this IServiceCollection services)
@@ -56,6 +63,12 @@ public static class ServiceCollectionExtension
         // Processors
         services.AddScoped<IRabbitMqQueueProducer, RabbitMqQueueProducer>();
         services.AddScoped<IRabbitMqQueueConsumer, RabbitMqQueueConsumer>();
+    }
+    
+    private static void AddAutoMapper(this IServiceCollection services)
+    {
+        services.AddAutoMapper(
+            typeof(FitFileDataProfile).Assembly);
     }
     
 }

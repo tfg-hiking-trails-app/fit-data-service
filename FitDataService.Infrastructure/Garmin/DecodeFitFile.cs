@@ -3,7 +3,7 @@ using Dynastream.Fit;
 using FitDataService.Domain.Models;
 using FitDataService.Infrastructure.Exceptions;
 using Activity = FitDataService.Domain.Models.Activity;
-using DateTime = System.DateTime;
+using DateTime = Dynastream.Fit.DateTime;
 
 namespace FitDataService.Infrastructure.Garmin;
 
@@ -48,7 +48,7 @@ public class DecodeFitFile
             Event = GetEnumValue(activityMesg.GetEvent()),
             EventType = GetEnumValue(activityMesg.GetEventType()),
             LocalTimestamp = activityMesg.GetLocalTimestamp().HasValue 
-                ? new Dynastream.Fit.DateTime((uint) activityMesg.GetLocalTimestamp()!).GetDateTime()
+                ? new DateTime((uint) activityMesg.GetLocalTimestamp()!).GetDateTime()
                 : null,
             EventGroup = activityMesg.GetEventGroup(),
         };
