@@ -37,12 +37,12 @@ public class FitFileDataProfile : Profile
         return $"{GetMomentOfDay(localTimestamp)} {sport} by {product}".Trim();
     }
 
-    private double GetDistance(FitFileData data)
+    private int GetDistance(FitFileData data)
     {
-        double totalDistance = 0;
+        int totalDistance = 0;
 
         foreach (Session session in data.Session)
-            totalDistance += session.TotalDistance ?? 0;
+            totalDistance += Convert.ToInt32(session.TotalDistance);
         
         return totalDistance;
     }
@@ -91,7 +91,7 @@ public class FitFileDataProfile : Profile
         if (record is null)
             throw new Exception("Record not found");
         
-        return record.PositionLat!.Value / 1e7;
+        return record.PositionLat!.Value * (180 / Math.Pow(2, 31));
     }
 
     private double GetUbicationLongitude(FitFileData data)
@@ -101,7 +101,7 @@ public class FitFileDataProfile : Profile
         if (record is null)
             throw new Exception("Record not found");
         
-        return record.PositionLong!.Value / 1e7;
+        return record.PositionLong!.Value * (180 / Math.Pow(2, 31));
     }
     
     private string GetMomentOfDay(DateTime? date)
