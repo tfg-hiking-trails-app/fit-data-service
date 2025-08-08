@@ -3,24 +3,32 @@ using FitDataService.Domain.Interfaces;
 using FitDataService.Domain.Interfaces.Processors;
 using FitDataService.Domain.Models;
 using FitDataService.Infrastructure.Garmin;
+using Microsoft.Extensions.Logging;
 using Activity = FitDataService.Domain.Models.Activity;
+using File = System.IO.File;
 
 namespace FitDataService.Infrastructure.Processors;
 
 public class FitFileProcessor : IActivityFileProcessor
 {
+    private readonly ILogger<FitFileProcessor> _logger;
     private readonly IFitFileDataRepository _fitFileDataRepository;
     
     public string ExtensionFile => ".fit";
 
-    public FitFileProcessor(IFitFileDataRepository fitFileDataRepository)
+    public FitFileProcessor(
+        ILogger<FitFileProcessor> logger,
+        IFitFileDataRepository fitFileDataRepository)
     {
         _fitFileDataRepository = fitFileDataRepository;
+        _logger = logger;
     }
     
     public async Task<FitFileData> ReadActivityFile(string filePath)
     {
-        using (FileStream fitSource = new FileStream(filePath, FileMode.Open))
+        FitFileData fitFileData;
+
+        await using (FileStream fitSource = new FileStream(filePath, FileMode.Open))
         {
             Decode decoder = new Decode();
             FitListener fitListener = new FitListener();
@@ -35,12 +43,14 @@ public class FitFileProcessor : IActivityFileProcessor
 
             decoder.Read(fitSource);
 
-            FitFileData fitFileData = CreateFitFileData(filePath, fitListener.FitMessages);
+            fitFileData = CreateFitFileData(filePath, fitListener.FitMessages);
 
             await _fitFileDataRepository.CreateAsync(fitFileData);
-            
-            return fitFileData;
         }
+        
+        DeleteFile(filePath);
+        
+        return fitFileData;
     }
 
     private FitFileData CreateFitFileData(string filePath, FitMessages fitMessages)
@@ -64,6 +74,18 @@ public class FitFileProcessor : IActivityFileProcessor
             Lap = laps,
             Records = records,
         };
+    }
+
+    private void DeleteFile(string filePath)
+    {
+        try
+        {
+            File.Delete(filePath);
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            _logger.LogError(ex, "Permission denied to delete file");
+        }
     }
 
     private string GetHikingTrailCode(string filePath)
