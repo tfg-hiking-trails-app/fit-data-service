@@ -1,5 +1,6 @@
 ﻿using Common.Domain.Interfaces.Messaging;
 using Common.Infrastructure.Messaging.Configuration;
+using FitDataService.API.Workers;
 using FitDataService.Application.Interfaces;
 using FitDataService.Application.Services;
 using FitDataService.Domain.Interfaces;
@@ -11,7 +12,7 @@ using FitDataService.Infrastructure.Messaging.Consumer;
 using FitDataService.Infrastructure.Messaging.Producer;
 using FitDataService.Infrastructure.Processors;
 
-namespace FitDataService.Worker.Extensions;
+namespace FitDataService.API.Extensions;
 
 public static class ServiceCollectionExtension
 {
