@@ -3,13 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36310.24
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitDataService.Processor", "FitDataService.Processor\FitDataService.Processor.csproj", "{0A32B9AE-8392-4D8C-AB72-377779BF076D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitDataService.Domain", "FitDataService.Domain\FitDataService.Domain.csproj", "{FE8C452F-BD49-488F-AC7F-304CF37FCA7C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitDataService.Infrastructure", "FitDataService.Infrastructure\FitDataService.Infrastructure.csproj", "{37CD98C1-85FD-4C23-80A5-5ADD8BD488E5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitDataService.Application", "FitDataService.Application\FitDataService.Application.csproj", "{F5FA40D1-9AF9-44B2-813B-05B86F3ECEDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Infrastructure", "..\hiking-trail-common\Common.Infrastructure\Common.Infrastructure.csproj", "{B01D50A6-EB1A-4131-9F1F-DF1A42003798}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Application", "..\hiking-trail-common\Common.Application\Common.Application.csproj", "{C1784D4C-C949-44B1-9FB7-BFF3CA671ADD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitDataService.API", "FitDataService.API\FitDataService.API.csproj", "{6DEA6674-13E3-4D5E-8E37-F499BC4D0AB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.API", "..\hiking-trail-common\Common.API\Common.API.csproj", "{A9240028-5271-40FC-9551-2F64D0649644}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0A32B9AE-8392-4D8C-AB72-377779BF076D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A32B9AE-8392-4D8C-AB72-377779BF076D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A32B9AE-8392-4D8C-AB72-377779BF076D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A32B9AE-8392-4D8C-AB72-377779BF076D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FE8C452F-BD49-488F-AC7F-304CF37FCA7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FE8C452F-BD49-488F-AC7F-304CF37FCA7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE8C452F-BD49-488F-AC7F-304CF37FCA7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +35,22 @@ Global
 		{F5FA40D1-9AF9-44B2-813B-05B86F3ECEDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5FA40D1-9AF9-44B2-813B-05B86F3ECEDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5FA40D1-9AF9-44B2-813B-05B86F3ECEDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B01D50A6-EB1A-4131-9F1F-DF1A42003798}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B01D50A6-EB1A-4131-9F1F-DF1A42003798}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B01D50A6-EB1A-4131-9F1F-DF1A42003798}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B01D50A6-EB1A-4131-9F1F-DF1A42003798}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1784D4C-C949-44B1-9FB7-BFF3CA671ADD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1784D4C-C949-44B1-9FB7-BFF3CA671ADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1784D4C-C949-44B1-9FB7-BFF3CA671ADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1784D4C-C949-44B1-9FB7-BFF3CA671ADD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DEA6674-13E3-4D5E-8E37-F499BC4D0AB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DEA6674-13E3-4D5E-8E37-F499BC4D0AB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DEA6674-13E3-4D5E-8E37-F499BC4D0AB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DEA6674-13E3-4D5E-8E37-F499BC4D0AB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9240028-5271-40FC-9551-2F64D0649644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9240028-5271-40FC-9551-2F64D0649644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9240028-5271-40FC-9551-2F64D0649644}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9240028-5271-40FC-9551-2F64D0649644}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
