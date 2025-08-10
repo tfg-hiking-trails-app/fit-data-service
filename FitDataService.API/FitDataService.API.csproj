@@ -13,11 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="DTOs\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\hiking-trail-common\Common.API\Common.API.csproj" />
     <ProjectReference Include="..\FitDataService.Application\FitDataService.Application.csproj" />
     <ProjectReference Include="..\FitDataService.Infrastructure\FitDataService.Infrastructure.csproj" />

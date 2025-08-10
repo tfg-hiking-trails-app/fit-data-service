@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Common.Domain.Interfaces.Messaging;
-using FitDataService.Application.DTOs;
 using FitDataService.Application.DTOs.Messaging;
 using FitDataService.Application.Interfaces;
 using FitDataService.Domain.Interfaces.Processors;

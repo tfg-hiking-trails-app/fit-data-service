@@ -116,7 +116,7 @@ public class FitFileDataProfile : Profile
     {
         DateTime? localTimestamp = data.Activity.LocalTimestamp;
         
-        string sport = Enum.GetName(typeof(Sport), data.Session.FirstOrDefault()?.Sport!) ?? "Sport";
+        string sport = Enum.GetName(typeof(Sport), data.Sessions.FirstOrDefault()?.Sport!) ?? "Sport";
         string product = data.FileId.ProductName ?? "Unknown product";
         
         return $"{GetMomentOfDay(localTimestamp)} {sport} by {product}".Trim();
@@ -154,10 +154,10 @@ public class FitFileDataProfile : Profile
 
     private IList<Session> GetSessions(FitFileData data)
     {
-        IList<Session> sessions = data.Session;
+        IList<Session> sessions = data.Sessions;
 
         if (sessions.Count == 0)
-            throw new Exception("Session not found");
+            throw new Exception("Sessions not found");
         
         return sessions;
     }

@@ -57,7 +57,7 @@ public class DecodeFitFile
     public List<Session> CreateSessions(ReadOnlyCollection<SessionMesg> collection)
     {
         if (collection.Count == 0)
-            throw new ArgumentException("Collection Session is empty", nameof(collection));
+            throw new ArgumentException("Collection Sessions is empty", nameof(collection));
 
         List<Session> sessions = collection.Select(sessionMesg => new Session
             {
