@@ -3,8 +3,8 @@ namespace FitDataService.API.DTOs;
 public record RecordDto
 {
     public DateTime Timestamp { get; set; }
-    public int? PositionLat { get; set; }
-    public int? PositionLong { get; set; }
+    public double? PositionLat { get; set; }
+    public double? PositionLong { get; set; }
     public double? Altitude { get; set; }
     public int? HeartRate { get; set; }
     public int? Cadence { get; set; }

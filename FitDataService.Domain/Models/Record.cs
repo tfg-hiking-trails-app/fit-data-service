@@ -8,10 +8,10 @@ public class Record
     public DateTime Timestamp { get; set; }
 
     [BsonElement("position_lat")]
-    public int? PositionLat { get; set; }
+    public double? PositionLat { get; set; }
 
     [BsonElement("position_long")]
-    public int? PositionLong { get; set; }
+    public double? PositionLong { get; set; }
 
     [BsonElement("altitude")]
     public double? Altitude { get; set; }
