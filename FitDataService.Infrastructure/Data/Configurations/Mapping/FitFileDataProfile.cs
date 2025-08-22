@@ -117,9 +117,8 @@ public class FitFileDataProfile : Profile
         DateTime? localTimestamp = data.Activity.LocalTimestamp;
         
         string sport = Enum.GetName(typeof(Sport), data.Sessions.FirstOrDefault()?.Sport!) ?? "Sport";
-        string product = data.FileId.ProductName ?? "Unknown product";
         
-        return $"{GetMomentOfDay(localTimestamp)} {sport} by {product}".Trim();
+        return $"{GetMomentOfDay(localTimestamp)} {sport}".Trim();
     }
     
     private DateTime GetStartTime(IList<Session> sessions)
