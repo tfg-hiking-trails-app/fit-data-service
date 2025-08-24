@@ -12,7 +12,7 @@ public interface IFitFileDataRepository : IRepository<FitFileData>
     Task<IEnumerable<Record>> GetCoordinatesByHikingTrailCodeAsync(Guid hikingTrailCode);
     Task<IEnumerable<Record>> GetGraphicsDataByHikingTrailCodeAsync(Guid hikingTrailCode);
     Task<IEnumerable<Record>> GetAltitudesByHikingTrailCodeAsync(Guid hikingTrailCode);
-    Task<IEnumerable<Record>> GetHearthRatesByHikingTrailCodeAsync(Guid hikingTrailCode);
+    Task<IEnumerable<Record>> GetHeartRatesByHikingTrailCodeAsync(Guid hikingTrailCode);
     Task<IEnumerable<Record>> GetCadencesByHikingTrailCodeAsync(Guid hikingTrailCode);
     Task<IEnumerable<Record>> GetDistancesByHikingTrailCodeAsync(Guid hikingTrailCode);
     Task<IEnumerable<Record>> GetSpeedByHikingTrailCodeAsync(Guid hikingTrailCode);

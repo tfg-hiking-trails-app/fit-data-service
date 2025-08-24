@@ -86,7 +86,7 @@ public class FitFileDataRepository : AbstractRepository<FitFileData>, IFitFileDa
             .FirstOrDefaultAsync();
     }
 
-    public async Task<IEnumerable<Record>> GetHearthRatesByHikingTrailCodeAsync(Guid hikingTrailCode)
+    public async Task<IEnumerable<Record>> GetHeartRatesByHikingTrailCodeAsync(Guid hikingTrailCode)
     {
         return await Collection
             .Find(data => data.HikingTrailCode == hikingTrailCode &&

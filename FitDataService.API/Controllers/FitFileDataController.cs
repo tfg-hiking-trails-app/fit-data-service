@@ -104,14 +104,14 @@ public class FitFileDataController : ControllerBase
         return Ok(_mapper.Map<IEnumerable<GraphicsDataDto>>(altitudes));
     }
     
-    [HttpGet("records/{hikingTrailCode:guid}/hearth-rate")]
+    [HttpGet("records/{hikingTrailCode:guid}/heart-rate")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<GraphicsDataDto>>> GetHearthRates([FromRoute] Guid hikingTrailCode)
+    public async Task<ActionResult<IEnumerable<GraphicsDataDto>>> GetHeartRates([FromRoute] Guid hikingTrailCode)
     {
-        IEnumerable<GraphicsDataEntityDto> hearthRates = 
-            await _fitFileDataService.GetHearthRatesByHikingTrailCodeAsync(hikingTrailCode);
+        IEnumerable<GraphicsDataEntityDto> heartRates = 
+            await _fitFileDataService.GetHeartRatesByHikingTrailCodeAsync(hikingTrailCode);
 
-        return Ok(_mapper.Map<IEnumerable<GraphicsDataDto>>(hearthRates));
+        return Ok(_mapper.Map<IEnumerable<GraphicsDataDto>>(heartRates));
     }
     
     [HttpGet("records/{hikingTrailCode:guid}/cadence")]

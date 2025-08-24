@@ -13,7 +13,7 @@ public interface IFitFileDataService
     Task<IEnumerable<CoordinateEntityDto>> GetCoordinatesByHikingTrailCodeAsync(Guid hikingTrailCode);
     Task<IEnumerable<GraphicsDataEntityDto>> GetGraphicsDataByHikingTrailCodeAsync(Guid hikingTrailCode);
     Task<IEnumerable<GraphicsDataEntityDto>> GetAltitudesByHikingTrailCodeAsync(Guid hikingTrailCode);
-    Task<IEnumerable<GraphicsDataEntityDto>> GetHearthRatesByHikingTrailCodeAsync(Guid hikingTrailCode);
+    Task<IEnumerable<GraphicsDataEntityDto>> GetHeartRatesByHikingTrailCodeAsync(Guid hikingTrailCode);
     Task<IEnumerable<GraphicsDataEntityDto>> GetCadencesByHikingTrailCodeAsync(Guid hikingTrailCode);
     Task<IEnumerable<GraphicsDataEntityDto>> GetDistancesByHikingTrailCodeAsync(Guid hikingTrailCode);
     Task<IEnumerable<GraphicsDataEntityDto>> GetSpeedByHikingTrailCodeAsync(Guid hikingTrailCode);

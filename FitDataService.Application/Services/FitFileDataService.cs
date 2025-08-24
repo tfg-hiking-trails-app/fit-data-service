@@ -76,11 +76,11 @@ public class FitFileDataService : IFitFileDataService
         return _mapper.Map<IEnumerable<GraphicsDataEntityDto>>(altitudes);
     }
 
-    public async Task<IEnumerable<GraphicsDataEntityDto>> GetHearthRatesByHikingTrailCodeAsync(Guid hikingTrailCode)
+    public async Task<IEnumerable<GraphicsDataEntityDto>> GetHeartRatesByHikingTrailCodeAsync(Guid hikingTrailCode)
     {
-        IEnumerable<Record> hearthRates = await _fitFileDataRepository.GetHearthRatesByHikingTrailCodeAsync(hikingTrailCode);
+        IEnumerable<Record> heartRates = await _fitFileDataRepository.GetHeartRatesByHikingTrailCodeAsync(hikingTrailCode);
         
-        return _mapper.Map<IEnumerable<GraphicsDataEntityDto>>(hearthRates);
+        return _mapper.Map<IEnumerable<GraphicsDataEntityDto>>(heartRates);
     }
 
     public async Task<IEnumerable<GraphicsDataEntityDto>> GetCadencesByHikingTrailCodeAsync(Guid hikingTrailCode)

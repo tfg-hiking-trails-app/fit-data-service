@@ -1,6 +1,6 @@
 namespace FitDataService.API.DTOs.RecordData;
 
-public class GraphicsDataDto
+public record GraphicsDataDto
 {
     public DateTime Timestamp { get; set; }
     public double? Altitude { get; set; }
