@@ -88,28 +88,109 @@ public class FitFileDataProfile : Profile
     {
         IList<Session> sessions = GetSessions(data);
         
-        foreach (Session session in sessions)
+        if (sessions.Count == 0)
+            return;
+        
+        // Totals
+        double totalDistance = 0;
+        double totalElapsed = 0;
+        int totalCalories = 0;
+        long totalSteps = 0;
+        int totalAscent = 0;
+        int totalDescent = 0;
+        
+        // Averages
+        double sumHeartRate = 0;
+        double sumCadence = 0;
+        double sumSpeed = 0;
+        double weightTime = 0;
+        
+        // Max and Min
+        double maxSpeed = 0;
+        double maxHeartRate = 0;
+        double maxCadence = 0;
+        double minHeartRate = double.PositiveInfinity;
+        double maxAltitude = double.NegativeInfinity;
+        double minAltitude = double.PositiveInfinity;
+        
+        double sumTrainingEffect = 0;
+        int countTrainingEffect = 0;
+        double totalTrainingStressScore = 0;
+
+        foreach (var session in sessions)
         {
-            Distance += Convert.ToInt32(session.TotalDistance);
-            TotalElapsedTime += session.TotalElapsedTime;
-            Steps += (session.TotalCycles ?? 0) * 2;
-            Calories += session.TotalCalories ?? 0;
-            AveragePace += 60 / ((session.AvgSpeed ?? 0) * 3.6);    // Min/Km
-            MaxPace += 60 / ((session.MaxSpeed ?? 0) * 3.6);    // Min/Km
-            ElevationGain += session.TotalAscent ?? 0;
-            ElevationLoss += session.TotalDescent ?? 0;
-            AverageSpeed += session.AvgSpeed ?? 0;
-            MaxSpeed += session.MaxSpeed ?? 0;
-            AverageHeartRate += session.AvgHeartRate ?? 0;
-            MaxHeartRate += session.MaxHeartRate ?? 0;
-            MinHeartRate += session.MinHeartRate ?? 0;
-            AverageCadence += session.AvgCadence ?? 0;
-            MaxCadence += session.MaxCadence ?? 0;
-            MaxAltitude += session.MaxAltitude ?? 0;
-            MinAltitude += session.MinAltitude ?? 0;
-            TotalTrainingEffect += session.TotalTrainingEffect ?? 0;
-            TrainingStressScore += session.TrainingStressScore ?? 0;
+            totalDistance += session.TotalDistance ?? 0;
+            totalElapsed += session.TotalElapsedTime;
+            totalCalories += session.TotalCalories ?? 0;
+            totalSteps += (session.TotalCycles ?? 0) * 2;
+            totalAscent += session.TotalAscent ?? 0;
+            totalDescent += session.TotalDescent ?? 0;
+            
+            if (session.TotalElapsedTime > 0)
+            {
+                sumHeartRate += (session.AvgHeartRate ?? 0) * session.TotalElapsedTime;
+                sumCadence += (session.AvgCadence ?? 0) * session.TotalElapsedTime;
+                sumSpeed += (session.AvgSpeed ?? 0) * session.TotalElapsedTime;
+                weightTime += session.TotalElapsedTime;
+            }
+
+            maxSpeed = Math.Max(maxSpeed, session.MaxSpeed ?? 0);
+            maxHeartRate = Math.Max(maxHeartRate, session.MaxHeartRate ?? 0);
+            maxCadence = Math.Max(maxCadence, session.MaxCadence ?? 0);
+            minHeartRate = Math.Min(minHeartRate, session.MinHeartRate ?? 0);
+            maxAltitude = Math.Max(maxAltitude, session.MaxAltitude ?? 0);
+            minAltitude = Math.Min(minAltitude, session.MinAltitude ?? 0);
+            
+            totalTrainingStressScore += session.TrainingStressScore ?? 0;
+            
+            if (session.TotalTrainingEffect.HasValue)
+            {
+                sumTrainingEffect += session.TotalTrainingEffect.Value;
+                countTrainingEffect++;
+            }
         }
+
+        // Average Speed (m/s)
+        double avgSpeed = totalElapsed > 0
+            ? totalDistance / totalElapsed
+            : (weightTime > 0 ? sumSpeed / weightTime : 0);
+
+        // Average Pace (s/km)
+        double avgPace = (totalDistance > 0 && totalElapsed > 0)
+            ? totalElapsed / (totalDistance / 1000.0)
+            : 0;
+
+        // Max Pace (s/km)
+        double fastestPace = maxSpeed > 0
+            ? 1000.0 / maxSpeed
+            : 0;
+        
+        double avgHeartRate = weightTime > 0 ? sumHeartRate / weightTime : 0;
+        double avgCadence = weightTime > 0 ? sumCadence / weightTime : 0;
+        
+        double avgTrainingEffect = countTrainingEffect > 0
+            ? sumTrainingEffect / countTrainingEffect
+            : 0;
+
+        Distance = (int) Math.Round(totalDistance);
+        TotalElapsedTime = totalElapsed;
+        Steps = totalSteps;
+        Calories = totalCalories;
+        AveragePace = avgPace;
+        MaxPace = fastestPace;
+        ElevationGain = totalAscent;
+        ElevationLoss = totalDescent;
+        AverageSpeed = avgSpeed;
+        MaxSpeed = maxSpeed;
+        AverageHeartRate = Convert.ToInt32(avgHeartRate);
+        MaxHeartRate = Convert.ToInt32(maxHeartRate);
+        MinHeartRate = double.IsPositiveInfinity(minHeartRate) ? 0 : Convert.ToInt32(minHeartRate);
+        AverageCadence = avgCadence;
+        MaxCadence = Math.Round(maxCadence, 1);
+        MaxAltitude = double.IsNegativeInfinity(maxAltitude) ? 0 : maxAltitude;
+        MinAltitude = double.IsPositiveInfinity(minAltitude) ? 0 : minAltitude;
+        TrainingStressScore = totalTrainingStressScore;
+        TotalTrainingEffect = avgTrainingEffect;
     }
     
     private string GetName(FitFileData data)

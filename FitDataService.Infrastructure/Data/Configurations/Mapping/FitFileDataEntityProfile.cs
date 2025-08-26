@@ -11,7 +11,12 @@ public class FitFileDataEntityProfile : Profile
     {
         CreateMap<ActivityEntityDto, Activity>().ReverseMap();
         CreateMap<FiledIdEntityDto, FileId>().ReverseMap();
-        CreateMap<LapEntityDto, Lap>().ReverseMap();
+        CreateMap<LapEntityDto, Lap>();
+        CreateMap<Lap, LapEntityDto>()
+            .ForMember(dest => dest.AvgPace, opt => opt.MapFrom(
+                src => (src.AvgSpeed > 0) ? (1000.0 / src.AvgSpeed) / 60.0 : 0))
+            .ForMember(dest => dest.MaxPace, opt => opt.MapFrom(
+                src => (src.MaxSpeed > 0) ? (1000.0 / src.MaxSpeed) / 60.0 : 0));
         CreateMap<RecordEntityDto, Record>();
         CreateMap<Record, RecordEntityDto>()
             .ForMember(dest => dest.PositionLat, opt => opt.MapFrom(

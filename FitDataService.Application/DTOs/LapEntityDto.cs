@@ -23,4 +23,6 @@ public record LapEntityDto
     public int? Sport { get; set; }
     public double? AvgTemperature { get; set; }
     public double? MaxTemperature { get; set; }
+    public double? AvgPace { get; set; } // s/km
+    public double? MaxPace { get; set; } // s/km
 }
