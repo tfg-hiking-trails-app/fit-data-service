@@ -38,10 +38,10 @@ public class FitFileDataProfile : Profile
                 src => GetStartTime(GetSessions(src))))
             .ForMember(dest => dest.EndTime, opt => opt.MapFrom(
                 src => GetEndTime(GetSessions(src))))
-            .ForMember(dest => dest.UbicationLatitude, opt => opt.MapFrom(
-                src => GetUbicationLatitude(src)))
-            .ForMember(dest => dest.UbicationLongitude, opt => opt.MapFrom(
-                src => GetUbicationLongitude(src)))
+            .ForMember(dest => dest.LocationLatitude, opt => opt.MapFrom(
+                src => GetLocationLatitude(src)))
+            .ForMember(dest => dest.LocationLongitude, opt => opt.MapFrom(
+                src => GetLocationLongitude(src)))
             .ForMember(dest => dest.GeneratedByFitFile, opt => opt.MapFrom(
                 src => true))
             .ForMember(dest => dest.Distance, opt => opt.MapFrom(
@@ -212,7 +212,7 @@ public class FitFileDataProfile : Profile
         return sessions[0].StartTime.AddSeconds(TotalElapsedTime);
     }
     
-    private double GetUbicationLatitude(FitFileData data)
+    private double GetLocationLatitude(FitFileData data)
     {
         Record? record = data.Records.FirstOrDefault(r => r.PositionLat.HasValue);
         
@@ -222,7 +222,7 @@ public class FitFileDataProfile : Profile
         return record.PositionLat!.Value * (180 / Math.Pow(2, 31));
     }
 
-    private double GetUbicationLongitude(FitFileData data)
+    private double GetLocationLongitude(FitFileData data)
     {
         Record? record = data.Records.FirstOrDefault(r => r.PositionLong.HasValue);
         

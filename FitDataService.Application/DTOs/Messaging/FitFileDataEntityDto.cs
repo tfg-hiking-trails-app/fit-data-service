@@ -6,8 +6,8 @@ public record FitFileDataEntityDto
     public required string Name { get; set; }
     public required DateTime StartTime { get; set; }
     public required DateTime EndTime { get; set; }
-    public required double UbicationLatitude { get; set; }
-    public required double UbicationLongitude { get; set; }
+    public required double LocationLatitude { get; set; }
+    public required double LocationLongitude { get; set; }
     public required bool GeneratedByFitFile { get; set; }
     public required int Distance { get; set; }
     public required double Duration { get; set; }
