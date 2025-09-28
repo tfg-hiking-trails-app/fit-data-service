@@ -1,154 +1,54 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+namespace FitDataService.Application.DTOs;
 
-namespace FitDataService.Domain.Models;
-
-public class Session
-{ 
-    [BsonElement("messageIndex")]
+public record SessionEntityDto
+{
     public int? MessageIndex { get; set; }
-
-    [BsonElement("timestamp")]
     public DateTime Timestamp { get; set; }
-
-    [BsonElement("event")]
     public int? Event { get; set; }
-
-    [BsonElement("eventType")]
     public int? EventType { get; set; }
-
-    [BsonElement("startTime")]
-    [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
     public DateTime StartTime { get; set; }
-
-    [BsonElement("startPositionLat")]
     public int? StartPositionLat { get; set; }
-
-    [BsonElement("startPositionLong")]
     public int? StartPositionLong { get; set; }
-
-    [BsonElement("sport")]
     public int? Sport { get; set; }
-
-    [BsonElement("subSport")]
     public int? SubSport { get; set; }
-
-    [BsonElement("totalElapsedTime")]
     public double TotalElapsedTime { get; set; }
-
-    [BsonElement("totalTimerTime")]
     public double TotalTimerTime { get; set; }
-
-    [BsonElement("totalDistance")]
     public double? TotalDistance { get; set; }
-
-    [BsonElement("totalCycles")]
     public long? TotalCycles { get; set; }
-
-    [BsonElement("totalStrides")]
     public long? TotalStrides { get; set; }
-
-    [BsonElement("totalStrokes")]
     public long? TotalStrokes { get; set; }
-
-    [BsonElement("totalCalories")]
     public int? TotalCalories { get; set; }
-
-    [BsonElement("totalFatCalories")]
     public int? TotalFatCalories { get; set; }
-
-    [BsonElement("avgSpeed")]
     public double? AvgSpeed { get; set; }
-
-    [BsonElement("maxSpeed")]
     public double? MaxSpeed { get; set; }
-
-    [BsonElement("avgHeartRate")]
     public int? AvgHeartRate { get; set; }
-
-    [BsonElement("maxHeartRate")]
     public int? MaxHeartRate { get; set; }
-    
-    [BsonElement("minHeartRate")]
     public int? MinHeartRate { get; set; }
-
-    [BsonElement("avgCadence")]
     public int? AvgCadence { get; set; }
-
-    [BsonElement("avgRunningCadence")]
     public int? AvgRunningCadence { get; set; }
-
-    [BsonElement("maxCadence")]
     public int? MaxCadence { get; set; }
-
-    [BsonElement("maxRunningCadence")]
     public int? MaxRunningCadence { get; set; }
-
-    [BsonElement("avgPower")]
     public int? AvgPower { get; set; }
-
-    [BsonElement("maxPower")]
     public int? MaxPower { get; set; }
-
-    [BsonElement("totalAscent")]
     public int? TotalAscent { get; set; }
-
-    [BsonElement("totalDescent")]
     public int? TotalDescent { get; set; }
-    
-    [BsonElement("avgAltitude")]
     public float? AvgAltitude { get; set; }
-    
-    [BsonElement("maxAltitude")]
     public float? MaxAltitude { get; set; }
-    
-    [BsonElement("minAltitude")]
     public float? MinAltitude { get; set; }
-
-    [BsonElement("totalTrainingEffect")]
     public double? TotalTrainingEffect { get; set; }
-
-    [BsonElement("firstLapIndex")]
     public int? FirstLapIndex { get; set; }
-
-    [BsonElement("numLaps")]
     public int? NumLaps { get; set; }
-
-    [BsonElement("eventGroup")]
     public int? EventGroup { get; set; }
-
-    [BsonElement("trigger")]
     public int? Trigger { get; set; }
-
-    [BsonElement("necLat")]
     public int? NecLat { get; set; }
-
-    [BsonElement("necLong")]
     public int? NecLong { get; set; }
-
-    [BsonElement("swcLat")]
     public int? SwcLat { get; set; }
-
-    [BsonElement("swcLong")]
     public int? SwcLong { get; set; }
-
-    [BsonElement("numLengths")]
     public int? NumLengths { get; set; }
-
-    [BsonElement("normalizedPower")]
     public int? NormalizedPower { get; set; }
-
-    [BsonElement("trainingStressScore")]
     public double? TrainingStressScore { get; set; }
-
-    [BsonElement("intensityFactor")]
     public double? IntensityFactor { get; set; }
-
-    [BsonElement("leftRightBalance")]
     public int? LeftRightBalance { get; set; }
-
-    [BsonElement("endPositionLat")]
     public int? EndPositionLat { get; set; }
-
-    [BsonElement("endPositionLong")]
     public int? EndPositionLong { get; set; }
 }

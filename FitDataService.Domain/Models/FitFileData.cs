@@ -10,7 +10,8 @@ public class FitFileData : IEntity
     public string? Id { get; set; }
     
     [BsonElement("hiking_trail_code")]
-    public string? HikingTrailCode { get; set; }
+    [BsonRepresentation(BsonType.String)]
+    public Guid HikingTrailCode { get; set; }
     
     [BsonElement("file_id")]
     public FileId FileId { get; set; } = null!;
@@ -19,10 +20,10 @@ public class FitFileData : IEntity
     public Activity Activity { get; set; } = null!;
 
     [BsonElement("session")]
-    public IList<Session> Session { get; set; } = new List<Session>();
+    public IList<Session> Sessions { get; set; } = new List<Session>();
 
     [BsonElement("lap")]
-    public IList<Lap>? Lap { get; set; } = new List<Lap>();
+    public IList<Lap> Laps { get; set; } = new List<Lap>();
 
     [BsonElement("records")]
     public IList<Record> Records { get; set; } = new List<Record>();

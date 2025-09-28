@@ -1,70 +1,28 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+namespace FitDataService.Application.DTOs;
 
-namespace FitDataService.Domain.Models;
-
-public class Lap
+public record LapEntityDto
 {
-    [BsonElement("timestamp")]
     public DateTime Timestamp { get; set; }
-
-    [BsonElement("start_time")]
-    [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
     public DateTime? StartTime { get; set; }
-
-    [BsonElement("total_elapsed_time")]
     public double? TotalElapsedTime { get; set; }
-
-    [BsonElement("total_timer_time")]
     public double? TotalTimerTime { get; set; }
-
-    [BsonElement("total_distance")]
     public double? TotalDistance { get; set; }
-
-    [BsonElement("total_calories")]
     public int? TotalCalories { get; set; }
-
-    [BsonElement("avg_speed")]
     public double? AvgSpeed { get; set; }
-
-    [BsonElement("max_speed")]
     public double? MaxSpeed { get; set; }
-
-    [BsonElement("avg_heart_rate")]
     public int? AvgHeartRate { get; set; }
-
-    [BsonElement("max_heart_rate")]
     public int? MaxHeartRate { get; set; }
-
-    [BsonElement("avg_cadence")]
     public int? AvgCadence { get; set; }
-
-    [BsonElement("max_cadence")]
     public int? MaxCadence { get; set; }
-
-    [BsonElement("avg_power")]
     public int? AvgPower { get; set; }
-
-    [BsonElement("max_power")]
     public int? MaxPower { get; set; }
-
-    [BsonElement("total_ascent")]
     public int? TotalAscent { get; set; }
-
-    [BsonElement("total_descent")]
     public int? TotalDescent { get; set; }
-
-    [BsonElement("intensity")]
     public int? Intensity { get; set; }
-
-    [BsonElement("lap_trigger")]
     public int? LapTrigger { get; set; }
-
-    [BsonElement("sport")]
     public int? Sport { get; set; }
-
-    [BsonElement("avg_temperature")]
     public double? AvgTemperature { get; set; }
-
-    [BsonElement("max_temperature")]
     public double? MaxTemperature { get; set; }
+    public double? AvgPace { get; set; } // s/km
+    public double? MaxPace { get; set; } // s/km
 }

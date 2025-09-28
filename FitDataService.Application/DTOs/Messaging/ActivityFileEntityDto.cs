@@ -1,4 +1,4 @@
-﻿namespace FitDataService.Application.DTOs;
+﻿namespace FitDataService.Application.DTOs.Messaging;
 
 public class ActivityFileResponseDto
 {

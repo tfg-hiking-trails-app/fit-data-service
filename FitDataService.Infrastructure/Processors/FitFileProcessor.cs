@@ -63,15 +63,15 @@ public class FitFileProcessor : IActivityFileProcessor
         List<Lap> laps = decodeFitFile.CreateLaps(fitMessages.LapMesgs);
         List<Record> records = decodeFitFile.CreateRecords(fitMessages.RecordMesgs);
 
-        string hikingTrailCode = GetHikingTrailCode(filePath);
+        Guid hikingTrailCode = GetHikingTrailCode(filePath);
 
         return new FitFileData
         {
             HikingTrailCode = hikingTrailCode,
             FileId = fileId,
             Activity = activity,
-            Session = sessions,
-            Lap = laps,
+            Sessions = sessions,
+            Laps = laps,
             Records = records,
         };
     }
@@ -88,11 +88,13 @@ public class FitFileProcessor : IActivityFileProcessor
         }
     }
 
-    private string GetHikingTrailCode(string filePath)
+    private Guid GetHikingTrailCode(string filePath)
     { 
-        return Path
+        string code = Path
             .GetFileName(filePath)
             .Replace(ExtensionFile, string.Empty);
+        
+        return new Guid(code);
     }
     
 }

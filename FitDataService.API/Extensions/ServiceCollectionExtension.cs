@@ -11,6 +11,8 @@ using FitDataService.Infrastructure.Data.Repositories;
 using FitDataService.Infrastructure.Messaging.Consumer;
 using FitDataService.Infrastructure.Messaging.Producer;
 using FitDataService.Infrastructure.Processors;
+using Microsoft.OpenApi.Models;
+using FitFileDataProfile = FitDataService.API.DTOs.Mapping.FitFileDataProfile;
 
 namespace FitDataService.API.Extensions;
 
@@ -18,6 +20,8 @@ public static class ServiceCollectionExtension
 {
     public static void ServiceCollectionConfiguration(this IServiceCollection services)
     {
+        services.AddRouting(options => options.LowercaseUrls = true);
+        
         services.AddAutoMapper();
         
         services.AddRabbitMq();
@@ -27,6 +31,8 @@ public static class ServiceCollectionExtension
         services.AddServices();
         
         services.AddRepositories();
+
+        services.AddSwaggerGen();
     }
 
     private static void AddHostedServices(this IServiceCollection services)
@@ -45,6 +51,7 @@ public static class ServiceCollectionExtension
         // Services
         services.AddScoped<IEventConsumerService, EventConsumerService>();
         services.AddScoped<IEventProducerService, EventProducerService>();
+        services.AddScoped<IFitFileDataService, FitFileDataService>();
     }
 
     private static void AddRepositories(this IServiceCollection services)
@@ -69,7 +76,21 @@ public static class ServiceCollectionExtension
     private static void AddAutoMapper(this IServiceCollection services)
     {
         services.AddAutoMapper(
-            typeof(FitFileDataProfile).Assembly);
+            typeof(FitFileDataProfile).Assembly,
+            typeof(FitFileDataEntityProfile).Assembly,
+            typeof(Infrastructure.Data.Configurations.Mapping.FitFileDataProfile).Assembly);
+    }
+    
+    private static void AddSwaggerGen(this IServiceCollection services)
+    {
+        services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc("v1", new OpenApiInfo()
+            {
+                Title = "Fit File Data Microservice", 
+                Version = "3.0.1"
+            });
+        });
     }
     
 }
