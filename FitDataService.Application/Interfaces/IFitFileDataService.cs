@@ -5,6 +5,7 @@ namespace FitDataService.Application.Interfaces;
 
 public interface IFitFileDataService
 {
+    Task<byte[]?> GetFitFileByHikingTrailCodeAsync(Guid hikingTrailCode);
     Task<FiledIdEntityDto> GetFileIdByHikingTrailCodeAsync(Guid hikingTrailCode);
     Task<ActivityEntityDto> GetActivityByHikingTrailCodeAsync(Guid hikingTrailCode);
     Task<IEnumerable<SessionEntityDto>> GetSessionsByHikingTrailCodeAsync(Guid hikingTrailCode);

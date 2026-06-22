@@ -24,6 +24,19 @@ public class FitFileDataController : ControllerBase
         _fitFileDataService = fitFileDataService;
     }
 
+    [HttpGet("download/{hikingTrailCode:guid}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DownloadFitFile([FromRoute] Guid hikingTrailCode)
+    {
+        byte[]? fitFile = await _fitFileDataService.GetFitFileByHikingTrailCodeAsync(hikingTrailCode);
+
+        if (fitFile is null)
+            return NotFound();
+
+        return File(fitFile, "application/octet-stream", $"{hikingTrailCode}.fit");
+    }
+
     [HttpGet("file-id/{hikingTrailCode:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<FileIdDto>> GetFileId([FromRoute] Guid hikingTrailCode)

@@ -11,13 +11,26 @@ public class FitFileDataService : IFitFileDataService
 {
     private readonly IMapper _mapper;
     private readonly IFitFileDataRepository _fitFileDataRepository;
+    private readonly IFitFileEncoder _fitFileEncoder;
 
     public FitFileDataService(
-        IMapper mapper, 
-        IFitFileDataRepository fitFileDataRepository)
+        IMapper mapper,
+        IFitFileDataRepository fitFileDataRepository,
+        IFitFileEncoder fitFileEncoder)
     {
         _mapper = mapper;
         _fitFileDataRepository = fitFileDataRepository;
+        _fitFileEncoder = fitFileEncoder;
+    }
+
+    public async Task<byte[]?> GetFitFileByHikingTrailCodeAsync(Guid hikingTrailCode)
+    {
+        FitFileData? fitFileData = await _fitFileDataRepository.GetByHikingTrailCodeAsync(hikingTrailCode);
+
+        if (fitFileData is null)
+            return null;
+
+        return _fitFileEncoder.Encode(fitFileData);
     }
 
     public async Task<FiledIdEntityDto> GetFileIdByHikingTrailCodeAsync(Guid hikingTrailCode)

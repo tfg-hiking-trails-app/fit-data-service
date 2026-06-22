@@ -4,6 +4,7 @@ namespace FitDataService.Domain.Interfaces;
 
 public interface IFitFileDataRepository : IRepository<FitFileData>
 {
+    Task<FitFileData?> GetByHikingTrailCodeAsync(Guid hikingTrailCode);
     Task<FileId> GetFileIdByHikingTrailCodeAsync(Guid hikingTrailCode);
     Task<Activity> GetActivityByHikingTrailCodeAsync(Guid hikingTrailCode);
     Task<IEnumerable<Session>> GetSessionsByHikingTrailCodeAsync(Guid hikingTrailCode);
