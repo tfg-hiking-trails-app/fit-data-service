@@ -11,6 +11,13 @@ public class FitFileDataRepository : AbstractRepository<FitFileData>, IFitFileDa
     {
     }
 
+    public async Task<FitFileData?> GetByHikingTrailCodeAsync(Guid hikingTrailCode)
+    {
+        return await Collection
+            .Find(data => data.HikingTrailCode == hikingTrailCode)
+            .FirstOrDefaultAsync();
+    }
+
     public async Task<FileId> GetFileIdByHikingTrailCodeAsync(Guid hikingTrailCode)
     {
         return await Collection

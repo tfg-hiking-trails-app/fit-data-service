@@ -8,6 +8,7 @@ using FitDataService.Domain.Interfaces.Processors;
 using FitDataService.Infrastructure.Data;
 using FitDataService.Infrastructure.Data.Configurations.Mapping;
 using FitDataService.Infrastructure.Data.Repositories;
+using FitDataService.Infrastructure.Garmin;
 using FitDataService.Infrastructure.Messaging.Consumer;
 using FitDataService.Infrastructure.Messaging.Producer;
 using FitDataService.Infrastructure.Processors;
@@ -44,7 +45,10 @@ public static class ServiceCollectionExtension
     {
         // Processors
         services.AddScoped<IActivityFileProcessor, FitFileProcessor>();
-        
+
+        // Encoders
+        services.AddScoped<IFitFileEncoder, EncodeFitFile>();
+
         // Factories
         services.AddScoped<IActivityFileProcessorFactory, ActivityFileProcessorFactory>();
         
