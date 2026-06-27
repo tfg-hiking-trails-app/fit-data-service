@@ -6,26 +6,39 @@ namespace FitDataService.API.Workers
     public class Worker : BackgroundService
     {
         private readonly IServiceScopeFactory _serviceScopeFactory;
+        private readonly ILogger<Worker> _logger;
 
-        public Worker(IServiceScopeFactory scopeFactory)
+        public Worker(IServiceScopeFactory scopeFactory, ILogger<Worker> logger)
         {
             _serviceScopeFactory = scopeFactory;
+            _logger = logger;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                using (IServiceScope scope = _serviceScopeFactory.CreateScope())
+                try
                 {
+                    using IServiceScope scope = _serviceScopeFactory.CreateScope();
+
                     IEventConsumerService consumer = scope.ServiceProvider
                         .GetRequiredService<IEventConsumerService>();
                     IEventProducerService producer = scope.ServiceProvider
                         .GetRequiredService<IEventProducerService>();
-                    
-                    FitFileDataEntityDto fileData = await consumer.Consume();
 
-                    await producer.Send(fileData);
+                    FitFileResultDto result = await consumer.Consume();
+
+                    await producer.Send(result);
+                }
+                catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested)
+                {
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Unhandled error while processing an activity file");
+                    await Task.Delay(TimeSpan.FromSeconds(1), stoppingToken);
                 }
             }
         }

@@ -11,6 +11,9 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.ServiceCollectionConfiguration();
 
+builder.Services.Configure<HostOptions>(options =>
+    options.BackgroundServiceExceptionBehavior = BackgroundServiceExceptionBehavior.Ignore);
+
 var app = builder.Build();
 
 app.UseMiddleware<InternalErrorMiddleware>();

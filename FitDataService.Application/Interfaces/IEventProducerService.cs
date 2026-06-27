@@ -4,5 +4,5 @@ namespace FitDataService.Application.Interfaces;
 
 public interface IEventProducerService
 {
-    Task Send(FitFileDataEntityDto fileDataEntityDto);
+    Task Send(FitFileResultDto result);
 }

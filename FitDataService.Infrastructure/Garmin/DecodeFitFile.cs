@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
 using Dynastream.Fit;
 using FitDataService.Domain.Models;
-using FitDataService.Infrastructure.Exceptions;
+using FitDataService.Domain.Exceptions;
 using Activity = FitDataService.Domain.Models.Activity;
 using DateTime = Dynastream.Fit.DateTime;
 
@@ -9,6 +9,15 @@ namespace FitDataService.Infrastructure.Garmin;
 
 public class DecodeFitFile
 {
+    private static readonly HashSet<int> AcceptedSports = new()
+    {
+        (int) Sport.Hiking,
+        (int) Sport.Walking,
+        (int) Sport.Mountaineering,
+        (int) Sport.Snowshoeing,
+        (int) Sport.Running
+    };
+
     public FileId CreateFileId(ReadOnlyCollection<FileIdMesg> collection)
     {
         if (collection.Count == 0)
@@ -111,7 +120,7 @@ public class DecodeFitFile
                 EndPositionLat = sessionMesg.GetEndPositionLat(),
                 EndPositionLong = sessionMesg.GetEndPositionLong()
             })
-            .Where(session => session.Sport is not null && session.Sport == (int) Sport.Hiking)
+            .Where(session => session.Sport is not null && AcceptedSports.Contains(session.Sport.Value))
             .ToList();
 
         if (sessions.Count == 0)
