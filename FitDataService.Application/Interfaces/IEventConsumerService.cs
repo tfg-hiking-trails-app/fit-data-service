@@ -4,5 +4,5 @@ namespace FitDataService.Application.Interfaces;
 
 public interface IEventConsumerService
 {
-    Task<FitFileDataEntityDto> Consume();
+    Task<FitFileResultDto> Consume();
 }

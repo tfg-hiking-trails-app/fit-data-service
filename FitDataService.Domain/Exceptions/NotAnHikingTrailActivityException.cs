@@ -1,4 +1,4 @@
-namespace FitDataService.Infrastructure.Exceptions;
+namespace FitDataService.Domain.Exceptions;
 
 public class NotAnHikingTrailActivityException : Exception
 {

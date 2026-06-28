@@ -2,6 +2,7 @@
 using Common.Domain.Interfaces.Messaging;
 using FitDataService.Application.DTOs.Messaging;
 using FitDataService.Application.Interfaces;
+using FitDataService.Domain.Exceptions;
 using FitDataService.Domain.Interfaces.Processors;
 using FitDataService.Domain.Models;
 
@@ -25,19 +26,26 @@ public class EventConsumerService : IEventConsumerService
         _factory = factory;
     }
     
-    public async Task<FitFileDataEntityDto> Consume()
+    public async Task<FitFileResultDto> Consume()
     {
         ActivityFileResponseDto file = await _queueConsumer.BasicConsumeAsync<ActivityFileResponseDto>();
 
         string extension = Path.GetExtension(file.FileName).ToLowerInvariant();
 
         IActivityFileProcessor? activityFileProcessor = _factory.GetProcessor(extension);
-        
+
         if (activityFileProcessor is null)
             throw new Exception($"No activity file processor found for {extension}");
-        
-        FitFileData fileData = await activityFileProcessor.ReadActivityFile($"{Folder}/{file.FileName}");
-        
-        return _mapper.Map<FitFileDataEntityDto>(fileData);
+
+        try
+        {
+            FitFileData fileData = await activityFileProcessor.ReadActivityFile($"{Folder}/{file.FileName}");
+
+            return FitFileResultDto.Valid(_mapper.Map<FitFileDataEntityDto>(fileData));
+        }
+        catch (NotAnHikingTrailActivityException ex)
+        {
+            return FitFileResultDto.Rejected(ex.Message);
+        }
     }
 }

@@ -16,10 +16,10 @@ public class EventProducerService : IEventProducerService
         _queueProducer = queueProducer;
     }
     
-    public async Task Send(FitFileDataEntityDto fitFileDataEntityDto)
+    public async Task Send(FitFileResultDto result)
     {
-        string message = JsonSerializer.Serialize(fitFileDataEntityDto);
-        
+        string message = JsonSerializer.Serialize(result);
+
         await _queueProducer.BasicPublishAsync(Encoding.UTF8.GetBytes(message));
     }
     
