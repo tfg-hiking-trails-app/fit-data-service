@@ -97,6 +97,16 @@ public class FitFileDataController : ControllerBase
         return Ok(_mapper.Map<IEnumerable<CoordinateDto>>(coordinates));
     }
     
+    [HttpGet("public/records/{hikingTrailCode:guid}/coordinates")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<ActionResult<IEnumerable<CoordinateDto>>> GetPublicCoordinates([FromRoute] Guid hikingTrailCode)
+    {
+        IEnumerable<CoordinateEntityDto> coordinates =
+            await _fitFileDataService.GetCoordinatesByHikingTrailCodeAsync(hikingTrailCode);
+
+        return Ok(_mapper.Map<IEnumerable<CoordinateDto>>(coordinates));
+    }
+
     [HttpGet("records/{hikingTrailCode:guid}/graphics-data")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<IEnumerable<GraphicsDataDto>>> GetGraphicsData([FromRoute] Guid hikingTrailCode)
